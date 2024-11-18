@@ -3,12 +3,12 @@
     <div class="product-card">
       <div class="rating">
         <!-- {{ props.product.rating.rate }} -->
-        <span class="hint-star star" :title="'Rate: ' + props.product.rating.rate + ' Count: ' + props.product.rating.count">
-          <i :class="['fa', props.product.rating.rate >= .5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product.rating.rate >= 1.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product.rating.rate >= 2.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product.rating.rate >= 3.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product.rating.rate >= 4.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
+        <span class="hint-star star" :title="'Rate: ' + props.product?.rating?.rate + ' Count: ' + props.product?.rating?.count">
+          <i :class="['fa', props.product?.rating?.rate >= .5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
+          <i :class="['fa', props.product?.rating?.rate >= 1.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
+          <i :class="['fa', props.product?.rating?.rate >= 2.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
+          <i :class="['fa', props.product?.rating?.rate >= 3.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
+          <i :class="['fa', props.product?.rating?.rate >= 4.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
         </span>
       </div>
       <div class="product-image">
@@ -39,10 +39,10 @@ const props = defineProps({
   product: Object,
 });
 
-onMounted(() => {
-  const PROC_NAME = 'Product.onMount> ';
-  // console.log(PROC_NAME + 'props.product: ', props.product);
-});
+// onMounted(() => {
+//   const PROC_NAME = 'Product.onMount> ';
+//   // console.log(PROC_NAME + 'props.product: ', props.product);
+// });
 
 </script>
 
@@ -92,11 +92,13 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   // transition: all 0.3s ease-out;
 
   // display: inline-block;
   position: relative;
   overflow: hidden;
+  width: 100%;
   // height: 100%;
   // float: right;
   // width: 45%;
@@ -105,28 +107,35 @@ onMounted(() => {
 
 .info {
   background: rgba(27, 26, 26, 0.9);
-  font-family: 'Bree Serif', serif;
+  // font-family: 'Bree Serif', serif;
   transition: all 0.3s ease-out;
-  transform: translateX(-100%);
+  transform: translateX(-105%);
   position: absolute;
-  line-height: 1.8;
+  line-height: 1.5;
   text-align: left;
-  font-size: 105%;
-  cursor: no-drop;
+  font-size: 12px;
+  // cursor: no-drop;
   color: #FFF;
   height: 100%;
   width: 100%;
   left: 0;
   top: 0;
+  // scroll-
 }
 
 .info h2 {
-  text-align: center
+  text-align: center;
+}
+
+.info p {
+  margin: 0;
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 .product-image:hover .info {
   transform: translateX(0);
 }
+
 // .product-image:hover img {
 //   transition: all 0.3s ease-out;
 // }
@@ -138,6 +147,7 @@ onMounted(() => {
 .product-image img {
   max-width: 100%;
   max-height: 100%;
+  width: min-content;
 }
 
 .product-title {

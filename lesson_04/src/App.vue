@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ul class="product-list">
+    <div v-if="loading">Loading...</div>
+    <ul v-if="!loading" class="product-list">
       <li class="product-wrapper" v-for="(prod, index) in Products" :key="prod.id">
         <product v-if="index < 7" :product="prod" />
       </li>
@@ -13,15 +14,17 @@ import { ref, onBeforeMount } from 'vue';
 import Product from './components/Product.vue'
 
 const Products = ref([{}]);
+const loading = ref(false);
 
 onBeforeMount(() => {
   const PROC_NAME = 'App.onBeforeMount> ';
+  loading.value = true;
   fetch('https://fakestoreapi.com/products')
     .then((res) => res.json())
     .then((res) => {
       Products.value = res;
       console.log(PROC_NAME + 'Загружен список товаров: ', Products.value);
-    });
+    }).finally(() => loading.value = false);
 
 });
 
