@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <!-- {{ test }} -->
-    <page-header v-model="showPage"></page-header>
-    <page-body :show-page="showPage"></page-body>
+    <page-header v-model:page="showPage" v-model:filter="setProdFilter"></page-header>
+    <page-body :show-page="showPage" :filter="setProdFilter"></page-body>
     <page-footer></page-footer>
   </div>
 </template>
@@ -14,7 +14,7 @@ import PageBody from './components/PageBody.vue';
 import PageFooter from './components/PageFooter.vue';
 
 const showPage = ref(0)
-
+const setProdFilter = ref({ name: '', price: { min: 0, max: 0, }, rating: { min: 0, max: 0, } })
 // const test = computed(() => {
 //   console.log('showPage.value = ', showPage.value)
 //   return showPage.value;

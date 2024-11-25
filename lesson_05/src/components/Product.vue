@@ -4,11 +4,11 @@
       <div class="rating">
         <!-- {{ props.product.rating.rate }} -->
         <span class="hint-star star" :title="'Rate: ' + props.product?.rating?.rate + ' Count: ' + props.product?.rating?.count">
-          <i :class="['fa', props.product?.rating?.rate >= .5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product?.rating?.rate >= 1.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product?.rating?.rate >= 2.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product?.rating?.rate >= 3.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
-          <i :class="['fa', props.product?.rating?.rate >= 4.5 ? 'fa-star' : 'fa-star-o']" aria-hidden="true"></i>
+          <i :class="['bi', props.product?.rating?.rate >= .5 ? 'bi-star-fill' : 'bi-star']" aria-hidden="true"></i>
+          <i :class="['bi', props.product?.rating?.rate >= 1.5 ? 'bi-star-fill' : 'bi-star']" aria-hidden="true"></i>
+          <i :class="['bi', props.product?.rating?.rate >= 2.5 ? 'bi-star-fill' : 'bi-star']" aria-hidden="true"></i>
+          <i :class="['bi', props.product?.rating?.rate >= 3.5 ? 'bi-star-fill' : 'bi-star']" aria-hidden="true"></i>
+          <i :class="['bi', props.product?.rating?.rate >= 4.5 ? 'bi-star-fill' : 'bi-star']" aria-hidden="true"></i>
         </span>
       </div>
       <div class="product-image">
@@ -82,6 +82,9 @@ const props = defineProps({
   // margin-left: 0.5em;
   color: gold;
   width: 50%;
+
+  z-index: 9;
+  position: relative;
 }
 
 .product-image {

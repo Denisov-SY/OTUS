@@ -17,8 +17,40 @@
           </ul>
 
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text dropdown-toggle filter-button" id="addon-wrapping" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                <i class="bi bi-search"> </i>
+              </span>
+              <form class="dropdown-menu p-4">
+                <div>
+                  <comp-filter v-model:filter="filter"> </comp-filter>
+                </div>
+                <!-- <div class="mb-3">
+                  <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                    <label class="form-check-label" for="dropdownCheck2">
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary">Sign in</button> -->
+              </form>
+              <input type="text" class="form-control" placeholder="Поиск" aria-label="Поиск" aria-describedby="addon-wrapping" v-model="filter.name">
+              <span class="input-group-text filter-button" @click="() => { filter.name = ''; filter.price.min = 0; filter.price.max = 0; filter.rating.min = 0; filter.rating.max = 0; }"> <i class="bi bi-x-lg"> </i> </span>
+              <!-- <button type="button" @click="() => { console.log(filter) }">qqq</button> -->
+            </div>
           </form>
+          <!-- Modal -->
+
+
 
           <!-- <div class="dropdown text-end">
             <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,9 +73,25 @@
 </template>
 
 <script setup>
-  const showPage = defineModel();
+// import { Modal } from 'bootstrap';
+import CompFilter from './Filter.vue';
+
+const showPage = defineModel('page');
+const filter = defineModel('filter');
+
+// const filter = ref({});
+
+// function openFilter(params) {
+//   const PROC_NAME = 'openFilter> ';
+//   console.log(PROC_NAME, params);
+
+//   // const myModal = new Modal(document.getElementById('exampleModal'), {})
+
+// }
 </script>
 
 <style lang="scss" scoped>
-
+.filter-button {
+  cursor: pointer;
+}
 </style>
