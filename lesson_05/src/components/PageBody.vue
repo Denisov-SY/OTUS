@@ -13,7 +13,7 @@
       </template>
       <template v-else-if="pageNum === 2">
         <div>
-          <product-new @saving="(ev) => saving = ev" @new-prod="addNewProduct(ev)"></product-new>
+          <product-new @saving="(ev) => saving = ev" @new-prod="addNewProduct"></product-new>
         </div>
       </template>
     </div>
@@ -34,6 +34,7 @@ import ProductList from './ProductList.vue';
 import ProductNew from './ProductNew.vue';
 
 const props = defineProps(['showPage', 'filter']);
+const emit = defineEmits(['showPage']);
 
 const loading = ref(false);
 const saving = ref(false);
@@ -43,10 +44,11 @@ const productNew = ref(0);
 
 function addNewProduct(params) {
   const PROC_NAME = 'PageBody.addNewProduct> ';
+  console.log(PROC_NAME, params);
 
   productNew.value = params;
   pageNum.value = 0;
-  console.log(PROC_NAME, params);
+  emit('showPage', pageNum.value); // Переключение страницы
 }
 
 watch(props, (val) => { pageNum.value = val.showPage; });

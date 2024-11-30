@@ -2,7 +2,7 @@
   <div id="app">
     <!-- {{ test }} -->
     <page-header v-model:page="showPage" v-model:filter="setProdFilter"></page-header>
-    <page-body :show-page="showPage" :filter="setProdFilter"></page-body>
+    <page-body :show-page="showPage" @show-page="(ev) => showPage = ev" :filter="setProdFilter"></page-body>
     <page-footer></page-footer>
   </div>
 </template>
