@@ -25,8 +25,15 @@
       <div class="product-details">
         <h2 class="product-title">{{ props.product.title }}</h2>
         <h4 class="product-price"> ${{ props.product.price }}</h4>
-        <button class="add-to-cart-btn">Add to Cart</button>
-        <button class="view-btn"> <router-link :to="{ name: 'product', query: { id: props.product.id } }">View</router-link></button>
+        <div v-if="Quantity > 0">
+          <button class="add-to-cart-btn" @click="addToCart(1)">+</button>
+          Cart: {{ Quantity }}
+          <button class="add-to-cart-btn" @click="addToCart(-1)">-</button>
+        </div>
+        <div v-else>
+          <button class="add-to-cart-btn" @click="addToCart">Add to Cart</button>
+        </div>
+        <router-link :to="{ name: 'product', params: { id: props.product.id ?? 0 } }"><button class="view-btn"> View</button></router-link>
       </div>
     </div>
   </div>
@@ -34,15 +41,49 @@
 
 <script setup>
 
-import { onMounted } from 'vue';
+import { onBeforeMount } from 'vue';
+
+// import { onMounted } from 'vue';
 const props = defineProps({
   product: Object,
 });
 
+const Quantity = ref(props.product.quantity ?? 0);
 // onMounted(() => {
 //   const PROC_NAME = 'Product.onMount> ';
 //   // console.log(PROC_NAME + 'props.product: ', props.product);
 // });
+const prod = ref(props.product);
+
+onBeforeMount(() => {
+  const PROC_NAME = 'Product.onBeforeMount> ';
+  console.log(PROC_NAME + 'props.product: ', props.product);
+  
+  // prod.value = JSON.parse(localStorage.getItem('productList'))?.find(item => item.id === props.product.id);
+
+});
+
+function addToCart(quantity) {
+  const PROC_NAME = 'Product.addToCart> ';
+  window.globalReadStorage.value++;
+  console.log(PROC_NAME + 'window.globalReadStorage: ', window.globalReadStorage.value, 'quantity=' + quantity);
+
+  const prod = JSON.parse(localStorage.getItem('productList'))?.find(item => item.id === props.product.id);
+  prod?.quantity += quantity;
+  Quantity.value += quantity;
+  localStorage.setItem('productList', JSON.stringify(prod));
+
+  // const cart = JSON.parse(localStorage.getItem('cart'));
+  // const cartOne = cart.find(item => item.id === props.product.id);
+  // if (cartOne || cartOne.quantity > 0) {
+  //   cartOne.quantity += quantity;
+  // } else {
+  //   const prodOne = props.product;
+  //   prodOne.quantity = 1;
+  //   cart.push(prodOne);
+  // }
+  // localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 </script>
 
