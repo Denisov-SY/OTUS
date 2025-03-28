@@ -1,0 +1,51 @@
+{
+  "name": "isl2-client",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "prod": "node server/index.cjs",
+    "sinst": "node win_serv.cjs install",
+    "sinstall": "node win_serv.cjs install",
+    "suninst": "node win_serv.cjs uninstall",
+    "suninstall": "node win_serv.cjs uninstall",
+    "sri": "node win_serv.cjs reinstall",
+    "sreinstall": "node win_serv.cjs reinstall",
+    "sstart": "node win_serv.cjs start",
+    "sstop": "node win_serv.cjs stop",
+    "srs": "node win_serv.cjs restart",
+    "srestart": "node win_serv.cjs restart",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "server-dev": "nodemon --verbose --watch ./server ./server/index.js"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.16",
+    "axios": "^1.7.9",
+    "fs": "^0.0.2",
+    "highcharts": "^12.1.0",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "node-windows": "^1.0.0-beta.8",
+    "pinia": "^2.3.0",
+    "quasar": "^2.17.7",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
+    "x2js": "^3.4.4",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-latest/xlsx-latest.tgz"
+  },
+  "devDependencies": {
+    "@quasar/vite-plugin": "^1.9.0",
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "prettier": "^3.4.2",
+    "sass": "^1.83.0",
+    "vite": "^6.0.11"
+  }
+}
