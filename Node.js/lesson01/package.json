@@ -1,0 +1,12 @@
+{
+  "name": "lesson01",
+  "version": "1.0.0",
+  "description": "Node.js урок 01 Введение в Node и NPM",
+  "main": "index.js",
+  "module": "common",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
