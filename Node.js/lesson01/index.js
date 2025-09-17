@@ -1,20 +1,23 @@
 function printTree(node, prefix = "") {
-  // Ваш код здесь 
   let s = '';
+  if (prefix.length === 0) { s = '└'; }
 
   if (Array.isArray(node)) {
     node.forEach((el, idx) => {
-      s = s + '\n' + prefix + printTree(el, prefix + "  " + (idx === node.length-1 ? "└" : "├"))
+      // s = s + prefix + printTree(el, prefix + "  " + ((idx === node.length - 1) || (idx === 0) ? "└" : "├")) + '\n';
+      s = s + prefix + printTree(el, prefix + " ");
     });
   } else
     if (typeof node === 'object') {
-      Object.keys(node).forEach((key) => {
-        s = s + '\n' + prefix + '──' + printTree(node[key], prefix + "  ");
+      Object.keys(node).forEach((key, idx) => {
+        const p = "".padEnd(idx, " ") + prefix + ((idx === node.length - 1) ? "└" : "├");
+        // const p = "".padEnd(idx) + prefix + ((idx === node.length - 1) ? "└" : "├") + '── ';
+        s = s + printTree(node[key], p);
       });
     } else {
-      s = node;
+      s = '── ' + node + '\n';
     }
-  return s;
+  return s.replaceAll("├ ", "│ ");
 }
 
 const data = {
@@ -30,8 +33,8 @@ const data = {
     }
   ]
 };
-
-console.log('finish: ' + printTree(data));
+console.log('finish:');
+console.log(printTree(data));
 // console.log('finish: ' + printTree([1, 2, 3]));
 // console.log('finish: ' + printTree({name: 3}));
 
