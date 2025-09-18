@@ -1,16 +1,17 @@
 function printTree(node, prefix = "") {
   let s = '';
-  if (prefix.length === 0) { s = '└'; }
+  if (prefix.length === 0) { s = '└'; prefix = ' '; }
 
   if (Array.isArray(node)) {
     node.forEach((el, idx) => {
       // s = s + prefix + printTree(el, prefix + "  " + ((idx === node.length - 1) || (idx === 0) ? "└" : "├")) + '\n';
+      const p = prefix + "├"; 
       s = s + prefix + printTree(el, prefix + " ");
     });
   } else
     if (typeof node === 'object') {
       Object.keys(node).forEach((key, idx) => {
-        const p = "".padEnd(idx, " ") + prefix + ((idx === node.length - 1) ? "└" : "├");
+        const p = prefix + "├"; //((idx === node.length - 1) ? "└" : "├");
         // const p = "".padEnd(idx) + prefix + ((idx === node.length - 1) ? "└" : "├") + '── ';
         s = s + printTree(node[key], p);
       });
